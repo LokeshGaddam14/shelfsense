@@ -1,0 +1,91 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// ── Auth models ───────────────────────────────────────────────────────────────
+
+enum Role {
+  MANAGER
+  WORKER
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String   // plain text for hackathon demo
+  name      String
+  role      Role     @default(WORKER)
+  storeId   String?  // null means all stores (MANAGER)
+  createdAt DateTime @default(now())
+}
+
+// ── Chat models ───────────────────────────────────────────────────────────────
+
+model Session {
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  messages  Message[]
+}
+
+model Message {
+  id        String   @id @default(uuid())
+  sessionId String
+  session   Session  @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  role      String   // "user", "assistant", "system"
+  content   String
+  mode      String?  // "text", "voice"
+  createdAt DateTime @default(now())
+}
+
+// ── Retail models ─────────────────────────────────────────────────────────────
+
+model Store {
+  id          String        @id @default(uuid())
+  name        String
+  location    String
+  managerName String?
+  inventory   Inventory[]
+  sales       SalesRecord[]
+  createdAt   DateTime      @default(now())
+}
+
+model Product {
+  id                String        @id @default(uuid())
+  sku               String        @unique
+  name              String
+  category          String
+  price             Float
+  imageUrl          String?       // For mock cloudinary image upload demo
+  reorderThreshold  Int           @default(10)
+  inventory         Inventory[]
+  sales             SalesRecord[]
+  createdAt         DateTime      @default(now())
+}
+
+model Inventory {
+  id        String   @id @default(uuid())
+  storeId   String
+  productId String
+  quantity  Int
+  updatedAt DateTime @updatedAt
+  store     Store    @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@unique([storeId, productId])
+}
+
+model SalesRecord {
+  id        String   @id @default(uuid())
+  storeId   String
+  productId String
+  quantity  Int
+  revenue   Float
+  date      DateTime @default(now())
+  store     Store    @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
