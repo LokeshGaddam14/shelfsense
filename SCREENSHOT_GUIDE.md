@@ -1,26 +1,28 @@
-# ShelfSense Proof-of-Work: Screenshot & Recording Guide
+# SCREENSHOT GUIDE
 
-## Web Screenshots Needed:
-* [ ] **1. Dashboard page** — Capture all analytics cards displaying real numbers.
-* [ ] **2. AI Chat page** — Screenshot a real Gemini response answering an inventory-specific question.
-* [ ] **3. Voice active state** — Ensure the mic button is visibly glowing/active with the speech transcript visible on screen.
-* [ ] **4. Products page** — Capture the main product list with Add/Edit/Delete action buttons visible.
-* [ ] **5. Products (Add Modal)** — Show the Add Product modal open with the fields actively filled in.
-* [ ] **6. Products (Edit Modal)** — Show the Edit Product modal open with existing product data pre-filled.
-* [ ] **7. Inventory page** — Capture an inline edit actively taking place (e.g., cursor inside an input field changing stock).
-* [ ] **8. Role switch** — Create a side-by-side composite screenshot showing Manager view vs Worker view.
-* [ ] **9. Network tab (Chat Request)** — Screenshot Chrome DevTools showing the POST request to `/api/ai/chat` with a 200 OK status.
-* [ ] **10. Network tab (DB Response)** — Screenshot DevTools showing the actual database JSON array payload returned in a GET API response.
+Below is the guide detailing exactly which screens to screenshot or screen-record to prove all ShelfSense features work interactively.
 
-## Mobile Screenshots Needed:
-* [ ] **1. Chat screen** — Capture a real AI response visible in the Expo mobile UI.
-* [ ] **2. Voice recording active** — Capture the mic button in its pressed/recording active state.
-* [ ] **3. Transcription result** — Screenshot the transcribed text appearing inside the chat input box.
-* [ ] **4. Inventory screen** — Capture the mobile inventory list rendering live stock data.
-* [ ] **5. Role-based screen difference** — Capture the mobile UI missing Manager-only buttons, proving restricted access.
+### Web Screenshots Needed:
+1. Dashboard page — showing all analytics cards with real numbers
+2. AI Chat page — showing a real Gemini response to an inventory question
+3. Voice active state — mic button glowing/active with transcript visible
+4. Products page — showing the product list with Add/Edit/Delete buttons visible
+5. Products — Add modal open with form filled
+6. Products — Edit modal open with pre-filled data
+7. Inventory page — showing inline edit in action
+8. Role switch — Manager view vs Worker view side by side
+9. Network tab (DevTools) — showing POST to /api/ai/chat with 200 response
+10. Network tab — showing real DB data returned in API response
 
-## Screen Recording Needed:
-* [ ] **1. Full voice assistant flow (Web)** — Record clicking the mic, speaking, the transcript appearing, the AI responding in text, and the computer reading the response aloud.
-* [ ] **2. Full voice assistant flow (Mobile)** — Record pressing the mic, speaking, text appearing, AI response generation, and the TTS speech playing.
-* [ ] **3. E2E Data Flow** — Record adding a new product, navigating to the inventory page to see it appear, and checking the analytics dashboard to see total product metrics accurately update.
-* [ ] **4. Security/Roles** — Record a Manager successfully completing an action, followed by attempting the exact same action while logged in as a Worker to show the failure/blocking mechanism.
+### Mobile Screenshots Needed:
+1. Chat screen — showing a real AI response
+2. Voice recording active — mic button pressed state
+3. Transcription result appearing in chat
+4. Inventory screen — showing live data
+5. Role-based screen difference (Manager vs Worker)
+
+### Screen Recording Needed:
+1. Full voice assistant flow on web (speak → recognize → AI responds → reads aloud)
+2. Full voice assistant flow on mobile (record → transcribe → AI responds → speaks)
+3. Add a product → it appears in inventory → analytics update
+4. Manager performs an action → Worker cannot do the same action
